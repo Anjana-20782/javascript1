@@ -8,14 +8,14 @@
 
     
     /* background-color: red; */
-    padding-top: 80px;
+    /* padding-top: 80px; */
    
 }
 
 .card{
     margin: auto;
-    width: 50%;
-    height: 70vh;
+    width: 100%;
+    /* height: 100vh; */
     background-color: rgb(228, 222, 222);
     
 }
@@ -30,7 +30,7 @@
     margin-top: 20px;
     margin-left: 30px;
     background-color: rgb(57, 56, 56);
-    color: rgb(188, 185, 185);
+    color: rgb(144, 140, 140);
 }
 
 select{
@@ -83,21 +83,48 @@ h1{
 
 table{
 
-display: grid;
-grid-template-columns: auto auto auto auto;
-grid-template-rows: auto;
-/* border: 1px solid grey; */
-border-right: 1px solid grey;
 border-collapse: collapse;
 /* padding: 20px; */
 margin-top: 30px;  
-margin-left: 60px;
+margin-left: 200px;
+color: black;
 }
 
-th{
+th,td{
 
   border: 1px solid grey;
    padding-left: 25px;
    padding-right: 20px;  
 }
+
+.popup{
+
+    display: none;
+
+    position: absolute;
+    width: 250px;
+    top: 50%;
+    left: 50%;
+    padding: 30px;
+    transform: translate(-50%,-50%);
+    background-color: rgb(173, 170, 170);
+}
+
+.popup h1{
+
+    padding-left: 80px;
+}
+
+.popup input{
+
+    width: 180px;
+    height: 20px;
+    margin-left: 20px;
+}
+
+.popup .b1{
+
+    margin-left: 90px;
+}
+
 
