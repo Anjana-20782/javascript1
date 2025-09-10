@@ -16,11 +16,14 @@
 
             <div class="search">
                  <img src="./149852.png">
-                <input type="search" id="search" placeholder="search">
-                 <select name="" id="select">
-                    <option value="">All</option>
-                     <option value="">Completed</option>
-                      <option value="">Pending</option>
+               <input type="text" id="search" placeholder="Search tasks..." onkeyup="searchTask()" autocomplete="off">
+<div id="suggestions" class="suggestions"></div>
+
+                <!-- <button>Ok</button> -->
+                 <select name="" id="select" onchange="showData()">
+                    <option value="all">All</option>
+                     <option value="completed">Completed</option>
+                      <option value="pending">Pending</option>
                  </select>
                  <button class="b1" onclick="addshow()">Add</button>
             </div>
@@ -39,7 +42,7 @@
                 <input type="date" id="date"><br><br>
 
                 <button type="submit" id="submt" class="b1">Save</button>
-                 <button class="savebtn" id="closebtn" onclick="closetask()">Close</button>
+                 <button type="button" class="savebtn" id="closebtn" onclick="closetask()">Close</button>
 
                  </form>
 
