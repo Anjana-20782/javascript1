@@ -16,8 +16,10 @@
 
             <div class="search">
                  <img src="./149852.png">
-               <input type="text" id="search" placeholder="Search tasks..." onkeyup="searchTask()" autocomplete="off">
-<div id="suggestions" class="suggestions"></div>
+               <input type="text" id="search" placeholder="Search tasks..."  oninput="searchTask()" >
+               <!-- <div id="suggestions" class="suggestions"></div>  -->
+
+
 
                 <!-- <button>Ok</button> -->
                  <select name="" id="select" onchange="showData()">
@@ -36,10 +38,10 @@
                 <h1>Add Task</h1><br><br>
 
                 <label>Taskname :</label><br>
-                <input type="text" id="taskname"><br><br>
+                <input type="text" id="taskname" required><br><br>
 
                 <label>Date :</label><br>
-                <input type="date" id="date"><br><br>
+                <input type="date" id="date" required><br><br>
 
                 <button type="submit" id="submt" class="b1">Save</button>
                  <button type="button" class="savebtn" id="closebtn" onclick="closetask()">Close</button>

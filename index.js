@@ -18,13 +18,55 @@
     
 // });
 
+
+function searchTask() {
+    let str = '';
+    let searchValue = document.getElementById("search").value.toLowerCase();
+    let tasks = JSON.parse(localStorage.getItem("name")) || [];
+
+    tasks
+        .filter(task => task.tname.toLowerCase().includes(searchValue)) 
+        .map((searchedTask, index) => {
+            str += `
+                <tr>
+                    <td><input type="checkbox" ${searchedTask.status ? "checked" : ""} onchange="handleChange(${index})"></td>
+                    <td><span style="text-decoration:${searchedTask.status ? "line-through" : "none"}">${searchedTask.tname}</span></td>
+                    <td>${searchedTask.tdate}</td>
+                    <td>${searchedTask.status ? "Completed" : "Pending"}</td>
+                    <td>
+                        <button class="editbtn" onclick="editData(${index})">Edit</button>
+                        <button class="deletebtn" onclick="deleteData(${index})">Delete</button>
+                    </td>
+                </tr>
+            `;
+        });
+
+    document.getElementById("tablebody").innerHTML = str || "<tr><td colspan='5'>No matching tasks found</td></tr>";
+}
   
+
+
+document.getElementById("search").addEventListener("keyup", () => {
+    let arr = JSON.parse(localStorage.getItem("search")) || []; 
+    let value = document.getElementById("search").value.toLowerCase();
+
+    
+    let filtered = arr.filter(element =>
+        element.toLowerCase().includes(value)
+    );
+
+    
+    console.log(filtered);
+});
+
 
 
 
 let arr=null;
 let editIndex=null;
 showData();
+
+
 function addtask(event) {
     event.preventDefault();
     let tasks = JSON.parse(localStorage.getItem("name")) || [];
@@ -56,7 +98,8 @@ function showData() {
     let HTML = "";
 
     arr.forEach((taskdata, index) => {
-        // 🔹 apply filter
+       
+
         if (
             filter === "all" ||
             (filter === "completed" && taskdata.status) ||
@@ -125,61 +168,4 @@ function editData(index) {
     document.querySelector("#popup h1").innerText = "Edit Task";
 }
 
-
-
-// function searchTask() {
-//     let query = document.getElementById("search").value.toLowerCase();
-//     let arr = JSON.parse(localStorage.getItem("name")) || [];
-//     let suggestionBox = document.getElementById("suggestions");
-
-//     if (query === "") {
-//         suggestionBox.style.display = "none";
-//         return;
-//     }
-
-//     let matches = arr.filter(task => task.tname.toLowerCase().includes(query));
-
-//     if (matches.length > 0) {
-//         suggestionBox.innerHTML = matches
-//             .map((task, index) => `<div onclick="selectSuggestion('${task.tname}')">${task.tname}</div>`)
-//             .join("");
-//         suggestionBox.style.display = "block";
-//     } else {
-//         suggestionBox.innerHTML = "<div>No matches found</div>";
-//         suggestionBox.style.display = "block";
-//     }
-// }
-
-// // 🔹 When user clicks a suggestion
-// function selectSuggestion(value) {
-//     document.getElementById("search").value = value;
-//     document.getElementById("suggestions").style.display = "none";
-
-//     // optional: filter table results directly
-//     filterTable(value);
-// }
-
-// // 🔹 Filter tasks in table
-// function filterTable(value) {
-//     let arr = JSON.parse(localStorage.getItem("name")) || [];
-//     let HTML = "";
-
-//     arr.forEach((taskdata, index) => {
-//         if (taskdata.tname.toLowerCase().includes(value.toLowerCase())) {
-//             HTML += `
-//                 <tr>
-//                     <td><input type="checkbox" ${taskdata.status ? "checked" : ""} onchange="handleChange(${index})"></td>
-//                     <td><span style="text-decoration:${taskdata.status ? "line-through" : "none"}">${taskdata.tname}</span></td>
-//                     <td>${taskdata.tdate}</td>
-//                     <td>${taskdata.status ? "Completed" : "Pending"}</td>
-//                     <td>
-//                         <button class="editbtn" onclick="editData(${index})">Edit</button>
-//                         <button class="deletebtn" onclick="deleteData(${index})">Delete</button>
-//                     </td>
-//                 </tr>`;
-//         }
-//     });
-
-//     document.getElementById("tablebody").innerHTML = HTML || "<tr><td colspan='5'>No tasks found</td></tr>";
-// }
 
